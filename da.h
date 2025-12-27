@@ -20,6 +20,8 @@
 #define DA_INIT_CAP 256
 #endif
 
+#define DA_INIT {0}
+
 // using T=void is unsafe
 #define da_declare(T,name) typedef struct { \
     T *items;                               \

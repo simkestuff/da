@@ -25,7 +25,7 @@ da_declare(int, Array);
 
 int main(void)
 {
-    Array a = {0};
+    Array a = DA_INIT;
     da_append(&a, 12);
     da_append(&a, 19);
     int b[] = { 11, 12, 12, 13, 24, 4, 7, 12 };

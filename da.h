@@ -34,6 +34,12 @@
 #define da_get(da,i) (assert((i) < (da)->count && "index out of range"), \
                      (da)->items[(i)])
 
+#define da_set(da,i,v)                                 \
+do {                                                   \
+    assert((i) < (da)->count && "index out of range"); \
+    (da)->items[(i)] = (v);                            \
+} while (0)
+
 #define da_reserve(da,capacity_expected)                              \
 do {                                                                  \
     size_t newcap = (da)->capacity;                                   \
@@ -93,7 +99,7 @@ do {                    \
 
 #define da_ins(da,i,v)                                 \
 do {                                                   \
-    assert(i <= (da)->count && "index out of range");  \
+    assert(i < (da)->count && "index out of range");   \
     da_reserve((da), (da)->count + 1);                 \
     if ((i) < (da)->count) {                           \
         memmove((da)->items + i + 1, (da)->items + i,  \

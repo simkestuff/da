@@ -31,6 +31,12 @@ int main(void)
     printf("\n");
     printf("array size %zu, capacity %zu\n", da_len(&a), da_cap(&a));
 
+    da_set(&a, 3, 49);
+    for (size_t i = 0; i < da_len(&a); i++)
+	printf("%d ", da_get(&a, i));
+    printf("\n");
+    printf("array size %zu, capacity %zu\n", da_len(&a), da_cap(&a));
+    
     da_free(&a);
     return 0;
 }

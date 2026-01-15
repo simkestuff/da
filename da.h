@@ -31,12 +31,12 @@
 
 #define da_len(da) ((da)->count)
 #define da_cap(da) ((da)->capacity)
-#define da_get(da,i) (assert((i) >= 0 && (i) < (da)->count && "index out of range"), \
+#define da_get(da,i) (assert((size_t) (i) < (da)->count && "index out of range"), \
                      (da)->items[(i)])
 
 #define da_set(da,i,v)                                 \
 do {                                                   \
-    assert((i) >= 0 && (i) < (da)->count && "index out of range");	\
+    assert((size_t) (i) < (da)->count && "index out of range");	\
     (da)->items[(i)] = (v);                            \
 } while (0)
 

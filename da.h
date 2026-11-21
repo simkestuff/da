@@ -315,6 +315,30 @@ do {                                                                 \
     (da)->count++;                                                   \
 } while (0)
 
+/* da_foreach(it, da) - loop over all elements, front to back.
+   `it` must be a pointer to the element type, declared by you BEFORE the
+   loop (a macro cannot declare a variable of the right type in plain C99):
+
+       int *it;
+       da_foreach(it, &a)
+           printf("%d\n", *it);
+
+   Inside the loop *it is the current element, and you can modify it
+   (*it = 5). The `it` test also makes it safe on an array that never
+   allocated (items == NULL).
+   RULES:
+   - Do not append to or insert into the array inside the loop: a
+     reallocation leaves `it` dangling (rule R4).
+   - Do not delete inside the loop: the elements shift down, so the next
+     one is skipped. Loop over indices backwards if you need to delete
+     while iterating.
+   - `da` is evaluated on every iteration, so it must have no side effects
+     (rule R2). */
+#define da_foreach(it,da)                                            \
+    for ((it) = (da)->items;                                         \
+         (it) && (it) < (da)->items + (da)->count;                   \
+         (it)++)
+
 #endif // DA_H_
 
 

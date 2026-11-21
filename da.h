@@ -118,7 +118,7 @@
    * No thread safety: do not share one array between threads without
      your own locking.
    * No custom allocator hooks (it uses realloc/free from <stdlib.h>).
-   * No pop/last/swap-remove/resize/foreach helpers. Use items[count - 1]
+   * No pop/last/swap-remove/resize helpers. Use items[count - 1]
      and da_del for these, or add them yourself.
    * Two da_declare() lines with the same element type create two
      DIFFERENT, incompatible types. Declare each array type once (in a

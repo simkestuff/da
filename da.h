@@ -280,7 +280,7 @@ do {                                                                 \
 /* da_clear(da) - set count to 0. Keeps the allocated memory and capacity so
    the array can be refilled without reallocating. It does NOT free anything:
    if the elements are pointers you own, free them yourself first. */
-#define da_clear(da) ((da)->count = 0)
+#define da_clear(da) ((void)((da)->count = 0))
 
 /* da_free(da) - release the memory and reset the array to the empty state
    (items = NULL, count = 0, capacity = 0). Safe to call on an array that
